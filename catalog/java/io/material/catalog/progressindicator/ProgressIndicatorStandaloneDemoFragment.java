@@ -15,19 +15,21 @@
  */
 package io.material.catalog.progressindicator;
 
-import io.material.catalog.R;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
-import com.google.android.material.chip.Chip;
+
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.CircularProgressIndicatorSpec;
 import com.google.android.material.progressindicator.IndeterminateDrawable;
 import com.google.android.material.switchmaterial.SwitchMaterial;
+
+import io.material.catalog.R;
 import io.material.catalog.feature.DemoFragment;
 
 /**
@@ -53,14 +55,14 @@ public class ProgressIndicatorStandaloneDemoFragment extends DemoFragment {
     IndeterminateDrawable<CircularProgressIndicatorSpec> progressIndicatorDrawable =
         IndeterminateDrawable.createCircularDrawable(getContext(), spec);
 
-    Chip chip = view.findViewById(R.id.cat_progress_indicator_chip);
-    chip.setChipIcon(progressIndicatorDrawable);
+    MaterialButton button = view.findViewById(R.id.cat_progress_indicator_chip);
+    button.setIcon(progressIndicatorDrawable);
 
     SwitchMaterial chipIconSwitch =
         view.findViewById(R.id.cat_progress_indicator_standalone_chip_switch);
     chipIconSwitch.setOnCheckedChangeListener(
         (buttonView, isChecked) -> {
-          chip.setChipIconVisible(isChecked);
+          button.setIcon(isChecked ? progressIndicatorDrawable : null);
         });
     return view;
   }
